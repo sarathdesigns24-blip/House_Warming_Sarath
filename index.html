@@ -1,0 +1,960 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    :root {
+      color-scheme: light;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000
+    }
+
+    img {
+      max-width: 100%
+    }
+
+    [hidden]:not([hidden=until-found i]) {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <title>House Warming Premiere</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;700;800&family=Tiro+Tamil:ital@0;1&family=Mukta+Malar:wght@300;400;600;700&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0b0507;
+      --velvet: #ffe3a1;
+      --maroon: #4a0e1a;
+      --kumkum: #c4182b;
+      --gold: #e8b23a;
+      --goldl: #ffe29a;
+      --paper: #f4e4b8;
+      --cream: #fff3d6;
+      --leaf: #2f6b3a;
+      --mute: #c9b58a;
+      --tam: 'Anek Tamil', 'Tiro Tamil', 'Noto Sans Tamil', sans-serif;
+      --serif: 'Tiro Tamil', 'Noto Serif Tamil', serif;
+      --cine: 'Bebas Neue', 'Anek Tamil', Impact, sans-serif;
+      --body: 'Mukta Malar', 'Noto Sans Tamil', system-ui, sans-serif;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box }
+    html { background: #fff8e6; scroll-behavior: smooth }
+    html.locked, html.locked body { overflow: hidden; height: 100% }
+    body { margin: 0; background: #fff8e6; color: #3a0d14; font-family: var(--body); font-size: 17px; line-height: 1.65; overflow-x: hidden }
+    h1, h2, h3, p { margin: 0 }
+    button { font: inherit; cursor: pointer; color: inherit }
+    a { color: inherit }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px }
+    .wrap { max-width: 1040px; margin-inline: auto; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)) }
+    .cap-l { font-family: var(--cine); letter-spacing: .28em; color: #b3162a; font-size: 18px; text-transform: uppercase }
+
+    /* ---------- ENVELOPE INTRO ---------- */
+    .intro { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; text-align: center; background: radial-gradient(90% 70% at 50% 40%, #fffbe6 0%, #ffe7a3 55%, #ffc65a 100%); color: #5b0f1c; transition: opacity 1s ease, transform 1.2s ease; overflow: hidden }
+    html.js .intro { display: flex }
+    .intro.leave { opacity: 0; transform: scale(1.3); pointer-events: none }
+    .intro.gone { display: none !important }
+    .intro .thoranam { position: absolute; top: 0; left: 0; right: 0 }
+    .intro-in { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 96px max(16px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)) }
+    .in-kicker { font-family: var(--tam); font-weight: 800; font-size: clamp(26px, 7vw, 42px); line-height: 1.25; color: #7d0f1e }
+    .in-en { font-family: var(--cine); letter-spacing: .3em; color: #b3162a; font-size: clamp(15px, 3.6vw, 20px); padding-left: .3em }
+    .stage { display: flex; align-items: flex-end; justify-content: center; gap: clamp(4px, 3vw, 26px); margin-top: min(9vh, 70px) }
+    .lampi { width: clamp(34px, 8vw, 62px); flex: none; margin-bottom: -4px }
+    .env { --w: min(62vw, 360px); position: relative; width: var(--w); height: calc(var(--w)*.7); border: 0; background: none; padding: 0; cursor: pointer; perspective: 1000px; animation: wiggle 2.8s ease-in-out infinite }
+    .env.open { animation: none }
+    .e-back { position: absolute; inset: 0; background: #a8131f; border-radius: 6px; box-shadow: 0 22px 44px rgba(150, 40, 10, .38) }
+    .e-card { position: absolute; left: 6%; right: 6%; top: 7%; height: 86%; background: linear-gradient(#fffdf0, #fff1c6); border: 2px solid #e8b23a; box-shadow: inset 0 0 0 4px #fffdf0, inset 0 0 0 5px #e8b23a; border-radius: 3px; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 2px; padding-top: calc(var(--w)*.035); color: #7d0f1e; transition: transform 1.2s cubic-bezier(.3, .9, .3, 1) .6s }
+    .env.open .e-card { transform: translateY(-62%) }
+    .c-uh { font-family: var(--serif); font-style: normal; font-size: calc(var(--w)*.06); line-height: 1; color: #b3162a }
+    .c-t { font-family: var(--tam); font-weight: 800; font-size: calc(var(--w)*.083); line-height: 1.15; white-space: nowrap }
+    .c-s { font-family: var(--cine); letter-spacing: .2em; font-size: calc(var(--w)*.04); color: #b3162a; margin-top: 2px }
+    .e-l, .e-r, .e-b { position: absolute; inset: 0; z-index: 3; pointer-events: none }
+    .e-l { background: #c4182b; clip-path: polygon(0 0, 52% 56%, 0 100%) }
+    .e-r { background: #b3162a; clip-path: polygon(100% 0, 48% 56%, 100% 100%) }
+    .e-b { background: #d92338; clip-path: polygon(0 100%, 50% 40%, 100% 100%) }
+    .e-from { position: absolute; left: 0; right: 0; bottom: 4%; z-index: 4; text-align: center; color: #ffe9b0; font-size: calc(var(--w)*.05); line-height: 1.3; padding: 0 8%; pointer-events: none }
+    .e-from small { display: block; font-family: var(--cine); letter-spacing: .2em; font-size: calc(var(--w)*.042); color: #ffd45e }
+    .e-flap { position: absolute; left: 0; right: 0; top: 0; height: 58%; background: linear-gradient(#e8344a, #b3162a); clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; transition: transform .8s ease, z-index 0s .4s; z-index: 5; border-radius: 6px 6px 0 0 }
+    .env.open .e-flap { transform: rotateX(180deg); z-index: 1; background: linear-gradient(#8f0f1c, #a8131f) }
+    .e-seal { position: absolute; left: 50%; top: 53%; translate: -50% -50%; width: calc(var(--w)*.17); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff0b0, #e8b23a 60%, #a8700f); z-index: 6; display: grid; place-items: center; font-family: var(--serif); color: #7d0f1e; font-size: calc(var(--w)*.085); line-height: 1; box-shadow: 0 3px 8px rgba(0, 0, 0, .4); transition: opacity .3s, scale .4s; animation: pulse 2s infinite }
+    .env.open .e-seal { opacity: 0; scale: .3; animation: none }
+    .in-tap { margin-top: min(7vh, 56px); transition: opacity .4s; display: flex; flex-direction: column; gap: 0 }
+    .in-tap span { font-family: var(--tam); font-weight: 700; font-size: clamp(20px, 5vw, 26px); color: #7d0f1e }
+    .in-tap small { font-family: var(--cine); letter-spacing: .28em; color: #b3162a; font-size: clamp(14px, 3.4vw, 18px); padding-left: .28em }
+    .linkbtn { margin-top: 10px; background: none; border: 0; color: #7a4a3a; text-decoration: underline; text-underline-offset: 4px; font-size: 15px }
+
+    /* ---------- POSTER ---------- */
+    .psec { position: relative; padding: 112px 0 0; background: linear-gradient(180deg, #ffe49a 0%, #fff1c2 55%, #fff8e6 100%); overflow: hidden }
+    .beams { position: absolute; inset: 0; pointer-events: none; background: conic-gradient(from 180deg at 50% -10%, transparent 0 160deg, rgba(255, 170, 40, .3) 172deg, transparent 184deg 196deg, rgba(255, 170, 40, .24) 208deg, transparent 220deg); animation: beam 8s ease-in-out infinite alternate }
+    .pw { position: relative; width: min(88vw, 410px); margin: 0 auto; perspective: 1000px; animation: float 6s ease-in-out infinite }
+    .poster { container-type: inline-size; position: relative; aspect-ratio: 2/3; border-radius: 6px; overflow: hidden; background: linear-gradient(180deg, #c4182b 0%, #e8452a 30%, #ff8a3d 56%, #ffc25a 80%, #ffe08a 100%); box-shadow: 0 0 0 3px var(--gold), 0 0 0 9px #fff, 0 0 0 11px var(--gold), 0 30px 60px rgba(150, 50, 10, .38); transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .18s ease-out; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 5cqw 5cqw 4cqw }
+    .p-top { font-family: var(--cine); letter-spacing: .14em; font-size: 4.1cqw; color: var(--goldl); line-height: 1.35; z-index: 2 }
+    .p-title { font-family: var(--tam); font-weight: 800; font-size: 15.5cqw; line-height: 1.06; margin-top: 1.5cqw; background: linear-gradient(100deg, #ffd45e, #fff6cc 40%, #e8a91a 60%, #ffe58a); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 .8cqw 3cqw rgba(0, 0, 0, .6)); animation: shimmer 6s linear infinite; z-index: 2 }
+    .p-low { width: calc(100% + 10cqw); margin: 0 -5cqw -4cqw; padding: 3.5cqw 5cqw 4.5cqw; background: linear-gradient(#fff8e0, #ffe9b0); display: flex; flex-direction: column; align-items: center; border-top: 3px solid var(--gold); z-index: 2 }
+    .p-art { flex: 1; width: 100%; min-height: 0; display: flex; align-items: flex-end; justify-content: center; margin-top: -1cqw; margin-bottom: -1px }
+    .p-art svg { width: 112%; height: auto; max-height: 100%; display: block }
+    .p-tag { font-family: var(--serif); font-size: 5.4cqw; color: #5b0f1c; z-index: 2; line-height: 1.35 }
+    .p-en { font-family: var(--cine); letter-spacing: .2em; font-size: 3.6cqw; color: #b3162a; margin-top: 1cqw; z-index: 2; line-height: 1.4 }
+    .p-date { margin-top: 3cqw; display: flex; align-items: center; gap: 3cqw; z-index: 2 }
+    .p-date b { white-space: nowrap; font-family: var(--cine); font-weight: 400; font-size: 8.6cqw; letter-spacing: .06em; color: #b3162a; line-height: 1 }
+    .p-date span { font-family: var(--cine); letter-spacing: .14em; font-size: 3.5cqw; text-align: left; line-height: 1.35; color: #5b0f1c; border-left: 2px solid var(--gold); padding-left: 3cqw }
+    .cert { position: absolute; right: 4cqw; bottom: 4cqw; border: 2px solid var(--cream); color: var(--cream); font-family: var(--cine); font-size: 4cqw; padding: .4cqw 1.6cqw; border-radius: 2px; z-index: 3; display: none }
+    .glare { position: absolute; inset: 0; z-index: 5; pointer-events: none; background: radial-gradient(circle at var(--gx, 30%) var(--gy, 20%), rgba(255, 255, 255, .22), transparent 45%); mix-blend-mode: soft-light }
+    .hint { text-align: center; margin: 26px auto 0; font-size: 15px; color: #7a4a3a }
+    .marquee { margin-top: 40px; overflow: hidden; background: var(--kumkum); border-block: 2px solid var(--gold); padding: 8px 0; white-space: nowrap }
+    .mq { display: inline-flex; gap: 0; animation: mq 26s linear infinite }
+    .mq span { font-family: var(--cine); letter-spacing: .24em; font-size: 19px; padding-right: 2.2em; color: var(--cream) }
+    .mq span::after { content: "✦"; margin-left: 2.2em; color: var(--goldl) }
+    .scrollcue { position: absolute; left: 50%; bottom: 8px; translate: -50% 0 }
+
+    /* ---------- SECTIONS ---------- */
+    .sec { padding-block: 80px; position: relative }
+    .sec.alt { background: var(--velvet) }
+    .sec-head { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 2px; margin-bottom: 40px }
+    .sec-head h2 { font-family: var(--tam); font-weight: 800; font-size: clamp(32px, 7vw, 56px); line-height: 1.2; color: #5b0f1c }
+    .sec-head p { color: #7a4a3a }
+    .film-rule { width: 140px; height: 10px; margin-top: 10px; background: repeating-linear-gradient(90deg, var(--gold) 0 8px, transparent 8px 14px); opacity: .8; border-radius: 2px }
+
+    /* ticket */
+    .ticket { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); max-width: 900px; margin: 0 auto; filter: drop-shadow(0 22px 40px rgba(150, 60, 10, .3)); transform: rotate(-.6deg) }
+    .t-main { background: var(--paper); color: #3a0d14; border-radius: 14px 14px 0 0; overflow: hidden; position: relative }
+    .t-head { background: var(--kumkum); color: var(--cream); display: flex; justify-content: space-between; gap: 10px; padding: 8px 20px; font-family: var(--cine); letter-spacing: .12em; font-size: 17px }
+    .t-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 16px }
+    .t-title { font-family: var(--tam); font-weight: 800; font-size: clamp(32px, 7vw, 52px); line-height: 1.15; color: var(--maroon) }
+    .t-title small { display: block; font-family: var(--cine); font-weight: 400; letter-spacing: .26em; font-size: clamp(14px, 2.8vw, 18px); color: #7a4a12 }
+    .t-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px }
+    .t-grid label { display: block; font-family: var(--cine); letter-spacing: .2em; font-size: 14px; color: #8a5a22 }
+    .t-grid b { display: block; font-family: var(--cine); font-weight: 400; font-size: clamp(21px, 4.4vw, 28px); letter-spacing: .06em; line-height: 1.2; color: #3a0d14; overflow-wrap: anywhere }
+    .t-grid .wide { grid-column: 1/-1 }
+    .t-grid .wide b { font-family: var(--body); font-weight: 600; font-size: 17px; letter-spacing: 0; line-height: 1.5 }
+    .t-main::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(120, 80, 20, .04) 0 2px, transparent 2px 4px) }
+    .t-stub { flex-wrap: wrap; position: relative; background: var(--paper); color: #3a0d14; border-radius: 0 0 14px 14px; border-top: 3px dashed rgba(58, 13, 20, .5); padding: 20px 22px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: 16px }
+    .t-stub::before, .t-stub::after { content: ""; position: absolute; top: -14px; width: 26px; height: 26px; border-radius: 50%; background: var(--velvet) }
+    .t-stub::before { left: -13px }
+    .t-stub::after { right: -13px }
+    .barcode { height: 62px; display: flex; align-items: stretch; gap: 0; min-width: 0; flex: 1 1 100%; overflow: hidden }
+    .barcode i { display: block; background: #3a0d14 }
+    .tno { font-family: var(--cine); letter-spacing: .2em; font-size: 17px; white-space: nowrap }
+    .stamp { position: static; margin-left: auto; border: 3px solid var(--kumkum); color: var(--kumkum); font-family: var(--cine); letter-spacing: .2em; font-size: 24px; padding: 2px 12px; border-radius: 6px; rotate: -12deg; opacity: .9; background: rgba(244, 228, 184, .7) }
+    .stamp.hit { animation: stamp .5s cubic-bezier(.2, 1.6, .4, 1) }
+    .tin { max-width: 900px; margin: 30px auto 0; display: flex; flex-direction: column; gap: 8px }
+    .tin label { font-size: 17px; color: #5b0f1c }
+    .tin label small { font-family: var(--cine); letter-spacing: .2em; color: #b3162a; font-size: 15px; margin-left: 6px }
+    .tin input { width: 100%; font: inherit; font-size: 19px; padding: 12px 18px; border: 2px solid var(--gold); border-radius: 10px; background: #fff; color: #3a0d14 }
+    .tin input::placeholder { color: #a89368 }
+    .btns { display: flex; flex-wrap: wrap; gap: 10px }
+    .tin .btns { margin-top: 10px }
+    .btn { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #7d0f1e; background: transparent; color: #7d0f1e; padding: 9px 20px 10px; border-radius: 6px; font-weight: 600; font-size: 16px; text-decoration: none; line-height: 1.3; transition: transform .2s, background .2s, color .2s }
+    .btn:hover { background: #7d0f1e; color: #fff3d6; transform: translateY(-2px) }
+    .btn.solid { background: var(--kumkum); border-color: var(--kumkum); color: #fff }
+    .btn.solid:hover { background: #e11d33; border-color: #e11d33; color: #fff }
+    .btn svg { width: 18px; height: 18px; flex: none }
+    .btn small { margin-left: .5em; font-family: var(--cine); letter-spacing: .14em; font-size: 15px; font-weight: 400 }
+    .btn:disabled { opacity: .5; cursor: default; transform: none }
+    .fallback { width: 100%; margin-top: 10px; font: inherit; font-size: 14px; padding: 8px; border: 2px dashed var(--gold); border-radius: 8px; background: #fffdf4; color: #2a0d10 }
+    .vnu { max-width: 900px; margin: 34px auto 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: center; border: 2px solid var(--gold); padding: 18px 22px; background: #fff; box-shadow: 6px 6px 0 #ffe3a1 }
+    .vnu .ta { font-size: 18px; line-height: 1.7 }
+    .vnu .en { color: #7a4a3a; font-size: 16px }
+    .vnu .btns { flex-direction: column }
+
+    /* countdown */
+    .count { text-align: center; margin-top: 60px }
+    .count .cap { margin-bottom: 16px; color: #5b0f1c; font-size: 19px }
+    .count .cap .en { font-family: var(--cine); letter-spacing: .3em; color: #b3162a; margin-left: 10px; font-size: 17px }
+    .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; max-width: 640px; margin: 0 auto }
+    .tile { background: linear-gradient(180deg, #c4182b 0 50%, #a81324 50%); border: 2px solid var(--gold); border-radius: 8px; padding: 12px 4px 10px; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; box-shadow: 0 8px 18px rgba(150, 30, 10, .25) }
+    .tile::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: rgba(0, 0, 0, .3) }
+    .tile b { font-family: var(--cine); font-weight: 400; font-size: clamp(44px, 11vw, 84px); line-height: 1; color: var(--goldl); font-variant-numeric: tabular-nums; display: inline-block }
+    .tile b.tick { animation: tick .45s ease }
+    .tile span { font-size: 14px; color: var(--cream); line-height: 1.3 }
+    .tile small { font-family: var(--cine); letter-spacing: .2em; font-size: 13px; color: #ffe3a6 }
+    .count-msg { font-family: var(--tam); font-weight: 800; font-size: clamp(26px, 5.5vw, 40px); color: #b3162a }
+
+    /* special scene (milk) */
+    .milk-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 30px; align-items: center }
+    .milk-svg { width: 100%; max-width: 380px; margin-inline: auto; display: block; overflow: visible }
+    .milk-copy { display: flex; flex-direction: column; gap: 14px }
+    .milk-copy .ta { font-size: 20px; line-height: 1.8 }
+    .milk-copy .en { font-size: 18px; color: #6b3a1a; line-height: 1.55 }
+    .status { font-family: var(--tam); font-weight: 700; font-size: clamp(22px, 4.4vw, 28px); color: #7d0f1e; min-height: 2.7em; line-height: 1.35 }
+    .status small { display: block; font-family: var(--cine); font-weight: 400; letter-spacing: .14em; font-size: 17px; color: #8a4a0a; line-height: 1.4 }
+    .fl { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform .8s ease }
+    .fl .in { animation: flick .5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100% }
+    #milk[data-state=heating] .fl { transform: scaleY(.55) }
+    #milk[data-state=boiling] .fl { transform: scaleY(1) }
+    #milk[data-state=over] .fl { transform: scaleY(.7) }
+    #foam { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform 2.2s cubic-bezier(.3, .7, .3, 1) }
+    #milk[data-state=boiling] #foam { transform: scaleY(.6) }
+    #milk[data-state=over] #foam { transform: scaleY(1) }
+    .run { fill: none; stroke: #fffdf4; stroke-width: 11; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s ease-in }
+    #milk[data-state=over] .run { stroke-dashoffset: 0 }
+    .run:nth-of-type(2) { transition-delay: .25s }
+    .run:nth-of-type(3) { transition-delay: .5s }
+    .run:nth-of-type(4) { transition-delay: .15s }
+    .bub { opacity: 0 }
+    #milk[data-state=boiling] .bub, #milk[data-state=over] .bub { opacity: 1; animation: bubble 1s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; animation-delay: var(--b) }
+    .steam { opacity: 0; stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round }
+    #milk[data-state=heating] .steam, #milk[data-state=boiling] .steam { opacity: .55; animation: steam 2.4s ease-in-out infinite; animation-delay: var(--b) }
+    #pot { transform-box: fill-box; transform-origin: 50% 100% }
+    #milk[data-state=boiling] #pot { animation: shake .25s linear infinite }
+    .bubble-spot { position: relative }
+
+    /* cast */
+    .bill { display: flex; flex-direction: column; align-items: center; gap: 34px; text-align: center }
+    .bill .role { font-family: var(--cine); letter-spacing: .34em; color: var(--gold); font-size: 17px; padding-left: .34em }
+    .bill .nm { font-family: var(--tam); font-weight: 800; line-height: 1.25; color: var(--cream); overflow-wrap: anywhere }
+    .bill .en { font-family: var(--cine); letter-spacing: .14em; color: #ffe3a6; font-size: clamp(17px, 3.6vw, 23px); margin-top: 2px }
+    .bill .lead .nm { font-size: clamp(30px, 7vw, 58px); background: linear-gradient(100deg, #ffd45e, #fff6cc 45%, #e8a91a); -webkit-background-clip: text; background-clip: text; color: transparent }
+    .bill .co { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 40px; width: 100%; max-width: 820px }
+    .bill .co .nm { font-size: clamp(24px, 5vw, 36px) }
+    .bill .lamp-ic { width: 30px; margin: 0 auto 6px }
+    .bill .special { max-width: 560px; font-size: 19px; line-height: 1.8 }
+    .bill .special small { display: block; font-family: var(--cine); letter-spacing: .14em; font-size: 17px; color: #ffe3a6 }
+
+    /* stills */
+    .strip { display: flex; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; padding: 34px 0; background: #5b0f1c; border-block: 4px solid #c4182b; scrollbar-width: thin; scrollbar-color: var(--gold) #5b0f1c }
+    .fr { flex: none; width: min(78vw, 310px); padding: 26px 12px; position: relative; scroll-snap-align: center; background: #3a0a14; border-inline: 2px solid #5b0f1c }
+    .fr::before, .fr::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; background: repeating-linear-gradient(90deg, transparent 0 9px, #f4e4b8 9px 21px, transparent 21px 30px); -webkit-mask: none; opacity: .88 }
+    .fr::before { top: 7px }
+    .fr::after { bottom: 7px }
+    .fr .pic { aspect-ratio: 3/2; background: #0b0507; position: relative; overflow: hidden; width: 100%; display: block; border: 0; padding: 0 }
+    .fr button.pic { cursor: zoom-in }
+    .fr .pic img { width: 100%; height: 100%; object-fit: cover; display: block; filter: sepia(.15) contrast(1.05) }
+    .fr .pic.soon { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: var(--mute); background: repeating-linear-gradient(45deg, #150d0b 0 10px, #1b110e 10px 20px) }
+    .fr .pic.soon svg { width: 38px; height: 38px }
+    .fr .sn { position: absolute; left: 12px; bottom: 10px; font-family: var(--cine); letter-spacing: .2em; font-size: 13px; color: #e8b23a; z-index: 2 }
+    .fr .cp { position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 10px 6px; background: linear-gradient(transparent, rgba(0, 0, 0, .85)); font-size: 15px; line-height: 1.3; color: #fff }
+    .stillnote { text-align: center; margin-top: 20px; color: #7a4a3a }
+    .lb { position: fixed; inset: 0; z-index: 200; background: rgba(10, 3, 6, .95); display: none; align-items: center; justify-content: center; flex-direction: column; gap: 12px; padding: 60px 16px 24px }
+    .lb.on { display: flex }
+    .lb img { max-width: 100%; max-height: 78vh; border: 3px solid var(--gold) }
+    .lb p { color: #fff; font-size: 18px; text-align: center }
+    .lb button { position: absolute; background: rgba(255, 243, 214, .12); color: #fff; border: 2px solid var(--gold); width: 46px; height: 46px; border-radius: 50%; font-size: 22px; line-height: 1 }
+    .lb .x { top: max(14px, env(safe-area-inset-top, 0px)); right: 14px }
+    .lb .pv { left: 12px; top: 50% }
+    .lb .nx { right: 12px; top: 50% }
+
+    /* closing */
+    .closing { text-align: center; padding-block: 130px 70px; background: linear-gradient(180deg, #fff0c0, #ffc65a 65%, #ff9d3a); position: relative; overflow: hidden }
+    .closing .thoranam { position: absolute; top: 0; left: 0; right: 0 }
+    .closing h2 { font-family: var(--tam); font-weight: 800; font-size: clamp(48px, 13vw, 120px); line-height: 1.1; color: #7d0f1e; text-shadow: 0 3px 0 #fff3c4, 0 10px 30px rgba(150, 40, 10, .25) }
+    .closing .l2 { font-family: var(--serif); font-size: clamp(22px, 4.6vw, 32px); margin-top: 8px }
+    .closing .l3 { font-family: var(--cine); letter-spacing: .3em; color: #b3162a; margin-top: 6px; font-size: clamp(16px, 3.4vw, 21px); padding-left: .3em }
+    .closing .btns { justify-content: center; margin-top: 32px }
+    .foot { margin-top: 44px; font-size: 14px; color: #7a4a3a; letter-spacing: .04em }
+    .fab { position: fixed; z-index: 60; right: calc(14px + env(safe-area-inset-right, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: none; align-items: center; gap: 8px; background: var(--kumkum); color: #fff; text-decoration: none; padding: 11px 18px 12px; border-radius: 999px; font-weight: 700; box-shadow: 0 8px 24px rgba(0, 0, 0, .55); border: 2px solid var(--gold); line-height: 1.2 }
+    body.go .fab { display: flex }
+    .fab svg { width: 18px; height: 18px }
+    .snd { position: fixed; z-index: 170; top: max(12px, env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); width: 44px; height: 44px; border-radius: 50%; border: 2px solid #b3162a; background: #fff; color: #b3162a; display: grid; place-items: center; padding: 0; box-shadow: 0 4px 14px rgba(150, 40, 10, .3) }
+    .snd.off { opacity: .55 }
+    .snd.off::after { content: ""; position: absolute; width: 28px; height: 2px; background: #b3162a; rotate: -45deg }
+    .snd svg { width: 20px; height: 20px }
+    .toast { position: fixed; left: 50%; bottom: calc(80px + env(safe-area-inset-bottom, 0px)); translate: -50% 20px; background: var(--cream); color: var(--ink); padding: 10px 20px; border-radius: 999px; opacity: 0; pointer-events: none; transition: .3s; z-index: 300; font-size: 16px; max-width: calc(100vw - 32px); text-align: center }
+    .toast.on { opacity: 1; translate: -50% 0 }
+    #petals { position: fixed; inset: 0; pointer-events: none; z-index: 180 }
+    .pre { opacity: 0; transform: translateY(26px) }
+    .reveal { transition: opacity .9s ease, transform .9s cubic-bezier(.2, .8, .2, 1) }
+    .pre.in { opacity: 1; transform: none }
+    .kolam-host { width: min(84vw, 380px); margin: 0 auto 18px }
+    .kolam { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 7px rgba(255, 236, 190, .35)) }
+    .kolam path { fill: none; stroke: var(--jasmine); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1 }
+    .kolam.go path { animation: draw 2.4s ease forwards; animation-delay: calc(var(--i)*.07s + .3s) }
+    .kolam circle { fill: var(--jasmine); transform-box: fill-box; transform-origin: center; transform: scale(0) }
+    .kolam.go circle { animation: pop .5s cubic-bezier(.3, 1.6, .5, 1) forwards; animation-delay: calc(var(--j)*.05s + 1.6s) }
+    .kolam circle.g { fill: var(--turmeric) }
+    .kolam .spin { transform-origin: 180px 180px; animation: spin 120s linear infinite }
+    html:not(.js) .kolam path { stroke-dashoffset: 0 }
+    html:not(.js) .kolam circle { transform: none }
+    .thoranam { height: 78px; pointer-events: none; z-index: 3 }
+    .thoranam svg { display: block; width: 100%; height: 100% }
+    .thoranam .sw { animation: sway 3.4s ease-in-out infinite; animation-delay: var(--d) }
+    #milkSec { background: linear-gradient(180deg, #ffb23c, #ffd77a) }
+    #milkSec .sec-head h2 { color: #5b0f1c }
+    #milkSec .sec-head p { color: #6b3a1a }
+    #cast { background: linear-gradient(180deg, #c4182b, #9e1020); color: #fff3d6 }
+    #cast .sec-head h2 { color: #fff3d6 }
+    #cast .sec-head p { color: #ffe3a6 }
+    #cast .cap-l { color: #ffd45e }
+    .psec .kolam-host { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: min(150vw, 900px); opacity: .2; pointer-events: none }
+    .psec .kolam { filter: none }
+    .psec .kolam path { stroke: #b3162a }
+    .psec .kolam circle { fill: #b3162a }
+    .psec .kolam circle.g { fill: #e8a91a }
+    .psec .thoranam { position: absolute; top: 0; left: 0; right: 0 }
+
+    @keyframes wiggle { 0%, 100% { rotate: -1.2deg } 50% { rotate: 1.2deg } }
+    @keyframes grain { 0% { transform: translate(0, 0) } 20% { transform: translate(-3%, 2%) } 40% { transform: translate(2%, -3%) } 60% { transform: translate(-2%, -1%) } 80% { transform: translate(3%, 3%) } 100% { transform: translate(0, 0) } }
+    @keyframes flicker { 0% { opacity: 0 } 8% { opacity: .07 } 10% { opacity: 0 } 40% { opacity: .04 } 42% { opacity: 0 } 71% { opacity: .09 } 73% { opacity: 0 } }
+    @keyframes flickerL { from { opacity: .6 } to { opacity: 1 } }
+    @keyframes kb { from { transform: scale(.92) } to { transform: scale(1.14) } }
+    @keyframes trackIn { from { opacity: 0; letter-spacing: .3em; filter: blur(10px) } to { opacity: 1; letter-spacing: 0; filter: blur(0) } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+    @keyframes slam { 0% { opacity: 0; transform: scale(1.8); filter: blur(16px) } 60% { opacity: 1; transform: scale(.97); filter: blur(0) } 100% { opacity: 1; transform: scale(1) } }
+    @keyframes sweep { to { translate: 120% 0 } }
+    @keyframes mote { 0% { opacity: 0; transform: translateY(0) } 15% { opacity: .8 } 100% { opacity: 0; transform: translateY(-95vh) } }
+    @keyframes mq { to { transform: translateX(-50%) } }
+    @keyframes beam { from { rotate: -4deg } to { rotate: 4deg } }
+    @keyframes stamp { 0% { transform: scale(2.4); opacity: 0 } 100% { transform: scale(1); opacity: .9 } }
+    @keyframes rise { to { transform: translateY(0) } }
+    @keyframes draw { to { stroke-dashoffset: 0 } }
+    @keyframes pop { to { transform: scale(1) } }
+    @keyframes spin { to { rotate: 360deg } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(232, 178, 58, .6) } 70%, 100% { box-shadow: 0 0 0 24px rgba(232, 178, 58, 0) } }
+    @keyframes shimmer { to { background-position: -220% 0 } }
+    @keyframes float { 0%, 100% { translate: 0 0 } 50% { translate: 0 -8px } }
+    @keyframes tick { 0% { transform: translateY(-12px); opacity: .3 } 100% { transform: none; opacity: 1 } }
+    @keyframes flick { from { transform: scale(1, 1) skewX(-2deg) } to { transform: scale(.93, 1.1) skewX(3deg) } }
+    @keyframes glow { from { opacity: .55 } to { opacity: 1 } }
+    @keyframes bubble { from { transform: scale(.7) } to { transform: scale(1.15) } }
+    @keyframes steam { 0% { transform: translateY(8px); opacity: 0 } 30% { opacity: .6 } 100% { transform: translateY(-26px); opacity: 0 } }
+    @keyframes shake { 0%, 100% { transform: translateX(-.8px) } 50% { transform: translateX(.8px) } }
+    .flame { transform-origin: 30px 38px; animation: flick 1.1s ease-in-out infinite alternate }
+    .flame2 { transform-origin: 30px 38px; animation: flick .8s ease-in-out infinite alternate-reverse }
+    .glow { animation: glow 1.6s ease-in-out infinite alternate }
+
+    @media(min-width:760px) {
+      .ticket { grid-template-columns: minmax(0, 1fr) 250px }
+      .t-main { border-radius: 14px 0 0 14px }
+      .t-stub { border-radius: 0 14px 14px 0; border-top: 0; border-left: 3px dashed rgba(58, 13, 20, .5); flex-direction: column; justify-content: center; gap: 12px }
+      .t-stub::before, .t-stub::after { left: -14px; right: auto }
+      .t-stub::before { top: -13px }
+      .t-stub::after { top: auto; bottom: -13px }
+      .barcode { flex: none; width: 100% }
+      .stamp { position: absolute; top: auto; bottom: 14px; right: 14px; margin: 0 }
+    }
+
+    @media(max-width:760px) {
+      .milk-grid, .vnu { grid-template-columns: minmax(0, 1fr) }
+      .bill .co { grid-template-columns: minmax(0, 1fr) }
+      .sec { padding-block: 60px }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0s !important }
+    }
+  </style>
+  <script>document.documentElement.classList.add('js', 'locked')</script>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="brass" x1="0" x2="1">
+        <stop offset="0" stop-color="#a8700f" />
+        <stop offset=".45" stop-color="#f7d36a" />
+        <stop offset="1" stop-color="#9a6208" />
+      </linearGradient>
+      <linearGradient id="brassv" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f8d874" />
+        <stop offset="1" stop-color="#a8700f" />
+      </linearGradient>
+      <linearGradient id="fl" x1="0" y1="1" x2="0" y2="0">
+        <stop offset="0" stop-color="#e2420f" />
+        <stop offset=".55" stop-color="#ff9d1c" />
+        <stop offset="1" stop-color="#fff2a0" />
+      </linearGradient>
+      <radialGradient id="halo">
+        <stop offset="0" stop-color="#ffd25a" stop-opacity=".95" />
+        <stop offset="1" stop-color="#ffd25a" stop-opacity="0" />
+      </radialGradient>
+    </defs>
+  </svg>
+  <canvas id="petals" aria-hidden="true"></canvas>
+  <button class="snd" id="snd" aria-label="Sound on" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 17h12l-1.5-2.5V10a4.5 4.5 0 0 0-9 0v4.5z" />
+      <path d="M10.5 20a1.8 1.8 0 0 0 3 0" />
+    </svg></button>
+
+  <!-- ================= ENVELOPE ================= -->
+  <div class="intro" id="intro">
+    <div class="thoranam" data-thoranam></div>
+    <div class="intro-in">
+      <p class="in-kicker">உங்களுக்காக ஒரு அழைப்பு</p>
+      <p class="in-en">AN INVITATION FOR YOU</p>
+      <div class="stage">
+        <div class="lampi" data-lamp></div>
+        <button class="env" id="env" aria-label="Open the invitation envelope">
+          <span class="e-back"></span>
+          <span class="e-card"><i class="c-uh">உ</i><b class="c-t">புதுமனை புகுவிழா</b><span
+              class="c-s">INVITATION</span></span>
+          <span class="e-l"></span><span class="e-r"></span><span class="e-b"></span>
+          <span class="e-from"><small>அன்புடன் · FROM</small>S. Mariappan &amp; M. Muthulakshmi Family</span>
+          <span class="e-flap"></span>
+          <span class="e-seal">உ</span>
+        </button>
+        <div class="lampi" data-lamp></div>
+      </div>
+      <p class="in-tap" id="inTap"><span>தொட்டு திறக்கவும்</span><small>TAP THE ENVELOPE TO OPEN</small></p>
+      <button class="linkbtn" id="skipEnv">நேரடியாக பார்க்க · Skip</button>
+    </div>
+  </div>
+
+  <!-- ================= POSTER ================= -->
+  <header class="psec" id="top">
+    <div class="beams" aria-hidden="true"></div>
+    <div class="kolam-host" id="kolamHost" aria-hidden="true"></div>
+    <div class="thoranam" data-thoranam></div>
+    <div class="pw" id="pw">
+      <div class="poster" id="poster">
+        <p class="p-top">S. MARIAPPAN &amp; M. MUTHULAKSHMI<br>FAMILY PRESENT</p>
+        <h1 class="p-title">புதுமனை<br>புகுவிழா</h1>
+        <div class="p-art">
+          <svg viewBox="0 0 300 190" aria-hidden="true">
+            <defs>
+              <radialGradient id="psun">
+                <stop offset="0" stop-color="#fffbe0" />
+                <stop offset=".6" stop-color="#ffd25a" />
+                <stop offset="1" stop-color="#ff9d2e" />
+              </radialGradient>
+              <radialGradient id="pwin">
+                <stop offset="0" stop-color="#fff3b0" />
+                <stop offset="1" stop-color="#f5b014" />
+              </radialGradient>
+            </defs>
+            <g style="transform-origin:150px 150px">
+              <circle cx="150" cy="104" r="64" fill="url(#psun)" />
+              <circle cx="150" cy="104" r="86" fill="rgba(255,210,100,.18)" />
+            </g>
+            <rect x="0" y="168" width="300" height="22" fill="#4c8f45" />
+            <path d="M44 170V108H256V170z" fill="#f3dcae" />
+            <g fill="#b3162a">
+              <rect x="44" y="156" width="212" height="14" />
+            </g>
+            <g fill="#fff3d6">
+              <rect x="50" y="156" width="8" height="14" />
+              <rect x="66" y="156" width="8" height="14" />
+              <rect x="82" y="156" width="8" height="14" />
+              <rect x="98" y="156" width="8" height="14" />
+              <rect x="194" y="156" width="8" height="14" />
+              <rect x="210" y="156" width="8" height="14" />
+              <rect x="226" y="156" width="8" height="14" />
+              <rect x="242" y="156" width="8" height="14" />
+            </g>
+            <path d="M30 112L76 58H224L270 112z" fill="#a8321e" />
+            <path d="M44 106H256M58 92H242M72 78H228M86 66H214" stroke="#7a1f12" stroke-width="2" opacity=".7" />
+            <path d="M30 112L76 58H224L270 112" fill="none" stroke="#7a1f12" stroke-width="3" />
+            <path d="M134 170v-34a16 16 0 0 1 32 0v34z" fill="url(#pwin)" />
+            <path d="M150 120v50" stroke="#a8321e" stroke-width="2" />
+            <rect x="66" y="122" width="38" height="30" fill="url(#pwin)" stroke="#7a1f12" stroke-width="3">
+              <animate attributeName="opacity" values="1;.78;1" dur="2.6s" repeatCount="indefinite" />
+            </rect>
+            <rect x="196" y="122" width="38" height="30" fill="url(#pwin)" stroke="#7a1f12" stroke-width="3">
+              <animate attributeName="opacity" values=".8;1;.8" dur="3.1s" repeatCount="indefinite" />
+            </rect>
+            <path d="M122 112Q150 124 178 112" fill="none" stroke="#2f6b3a" stroke-width="5" stroke-dasharray="5 3" />
+            <g fill="#f5b014">
+              <circle cx="128" cy="116" r="3" />
+              <circle cx="140" cy="120" r="3" />
+              <circle cx="150" cy="122" r="3" />
+              <circle cx="160" cy="120" r="3" />
+              <circle cx="172" cy="116" r="3" />
+            </g>
+            <ellipse cx="150" cy="178" rx="44" ry="6" fill="none" stroke="#fff3d6" stroke-width="2"
+              stroke-dasharray="2 5" stroke-linecap="round" />
+            <g>
+              <circle cx="116" cy="164" r="9" fill="rgba(255,190,70,.5)">
+                <animate attributeName="r" values="8;11;8" dur="1.4s" repeatCount="indefinite" />
+              </circle>
+              <path d="M116 156c4 5 4 9 0 11-4-2-4-6 0-11z" fill="#ffd25a" />
+            </g>
+            <g>
+              <circle cx="184" cy="164" r="9" fill="rgba(255,190,70,.5)">
+                <animate attributeName="r" values="11;8;11" dur="1.2s" repeatCount="indefinite" />
+              </circle>
+              <path d="M184 156c4 5 4 9 0 11-4-2-4-6 0-11z" fill="#ffd25a" />
+            </g>
+          </svg>
+        </div>
+        <div class="p-low">
+          <p class="p-tag">ஒரு கனவு இல்லம். ஒரு மங்கல விழா.</p>
+          <p class="p-en">A HOUSE WARMING CELEBRATION</p>
+          <div class="p-date"><b>29 NOV 2026</b><span>SUNDAY<br>6 AM ONWARDS</span></div>
+        </div>
+        <div class="glare"></div>
+      </div>
+    </div>
+    <p class="hint">சுட்டிக்காட்டி சாய்க்கவும் · Move over the poster to tilt it</p>
+    <div class="marquee" aria-hidden="true">
+      <div class="mq"><span>NOW SHOWING · 29 NOV 2026</span><span>6 AM ONWARDS</span><span>OLD WASHERMANPET,
+          CHENNAI</span><span>ALL RELATIVES &amp; CLOSE FRIENDS WELCOME</span><span>NOW SHOWING · 29 NOV
+          2026</span><span>6 AM ONWARDS</span><span>OLD WASHERMANPET, CHENNAI</span><span>ALL RELATIVES &amp; CLOSE
+          FRIENDS WELCOME</span></div>
+    </div>
+  </header>
+
+  <!-- ================= TICKET ================= -->
+  <section class="sec alt" id="ticket">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="cap-l">Now booking</span>
+        <h2>உங்கள் அனுமதிச்சீட்டு</h2>
+        <p>Your admit-one pass. Type your name to print it.</p>
+        <div class="film-rule"></div>
+      </div>
+
+      <div class="ticket reveal">
+        <div class="t-main">
+          <div class="t-head"><span>ADMIT ONE FAMILY</span><span>அனுமதிச்சீட்டு</span></div>
+          <div class="t-body">
+            <div class="t-title">புதுமனை புகுவிழா<small>HOUSE WARMING · PREMIERE SHOW</small></div>
+            <div class="t-grid">
+              <div class="wide"><label>GUEST · விருந்தினர்</label><b id="tGuest">YOU &amp; FAMILY</b></div>
+              <div><label>DATE · நாள்</label><b>SUN 29 NOV 2026</b></div>
+              <div><label>SHOW · நேரம்</label><b>6:00 AM ONWARDS</b></div>
+              <div><label>SEAT · இருக்கை</label><b>ANY · FRONT ROW</b></div>
+              <div><label>ENTRY · கட்டணம்</label><b>BLESSINGS ONLY</b></div>
+              <div class="wide"><label>VENUE · இடம்</label><b>பழைய எண் 106, புதிய எண் 98/1, ஸ்ரீ ரங்கம்மாள் தெரு, பழைய
+                  வண்ணாரப்பேட்டை, சென்னை – 600 021.</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="t-stub">
+          <div class="barcode" id="bar" aria-hidden="true"></div>
+          <span class="tno" id="tNo">HW-2911-001</span>
+          <span class="stamp" id="stamp">ADMIT</span>
+        </div>
+      </div>
+
+      <div class="tin reveal">
+        <label for="guest">உங்கள் பெயர்<small>YOUR NAME</small></label>
+        <input id="guest" type="text" maxlength="30" placeholder="உங்கள் பெயர் / Your name" autocomplete="off">
+        <div class="btns">
+          <a class="btn solid" href="https://maps.app.goo.gl/CaZRW9f31M9kSxqdA" target="_blank" rel="noopener"><svg
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <path d="M3 11l18-8-8 18-2-8z" />
+            </svg><span>வழி காட்டு <small>DIRECTIONS</small></span></a>
+          <a class="btn" id="calLink" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="16" rx="2" />
+              <path d="M3 10h18M8 3v4M16 3v4" />
+            </svg><span>நாட்காட்டி <small>ADD TO CALENDAR</small></span></a>
+          <button class="btn" id="copyAddr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="11" height="11" rx="2" />
+              <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+            </svg><span>முகவரி <small>COPY ADDRESS</small></span></button>
+        </div>
+        <textarea class="fallback" id="fb" rows="3" readonly hidden aria-label="Text to copy"></textarea>
+      </div>
+
+      <div class="vnu reveal">
+        <div>
+          <p class="ta">பழைய எண் 106, புதிய எண் 98/1, ஸ்ரீ ரங்கம்மாள் தெரு, பழைய வண்ணாரப்பேட்டை, சென்னை – 600 021.</p>
+          <p class="en" id="addrEn">Old No. 106, New No. 98/1, Sri Rangammal Street, Old Washermanpet, Chennai 600021.
+          </p>
+        </div>
+      </div>
+
+      <div class="count reveal">
+        <p class="cap">முதல் காட்சிக்கு இன்னும்<span class="en">PREMIERE IN</span></p>
+        <div class="tiles" id="tiles">
+          <div class="tile"><b id="cd">0</b><span>நாட்கள்</span><small>DAYS</small></div>
+          <div class="tile"><b id="ch">0</b><span>மணி</span><small>HOURS</small></div>
+          <div class="tile"><b id="cm">0</b><span>நிமிடம்</span><small>MINUTES</small></div>
+          <div class="tile"><b id="cs">0</b><span>வினாடி</span><small>SECONDS</small></div>
+        </div>
+        <p class="count-msg" id="cmsg" hidden></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SPECIAL SCENE ================= -->
+  <section class="sec" id="milkSec">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="cap-l">Special scene</span>
+        <h2>பால் காய்ச்சுதல்</h2>
+        <p>The milk ritual. Light the stove and roll the scene.</p>
+        <div class="film-rule"></div>
+      </div>
+      <div class="milk-grid">
+        <div class="milk-copy reveal">
+          <p class="ta">புதிய வீட்டில் பால் பொங்கி வழிவது செல்வமும் மகிழ்ச்சியும் பெருகுவதன் அடையாளம். நீங்களும் அடுப்பை
+            மூட்டி, பால் பொங்குவதைப் பாருங்கள்!</p>
+          <p class="en">In a new home, milk that boils over is a sign of abundance and joy.</p>
+          <p class="status" id="status" aria-live="polite">அடுப்பை மூட்டுங்கள்<small>Light the stove</small></p>
+          <div class="btns"><button class="btn" id="boilBtn"><span id="boilTa">அடுப்பை மூட்டு</span> <small
+                id="boilEn">ACTION</small></button></div>
+        </div>
+        <div class="reveal"><svg class="milk-svg" id="milk" data-state="idle" viewBox="0 0 320 350" role="img"
+            aria-label="A brass pot on a clay stove. Milk boils over when the stove is lit.">
+            <defs>
+              <clipPath id="fire">
+                <rect x="122" y="292" width="76" height="46" />
+              </clipPath>
+            </defs>
+            <ellipse cx="160" cy="341" rx="120" ry="7" fill="#000" opacity=".35" />
+            <!-- stove -->
+            <path d="M62 338V284c0-10 6-18 18-18h160c12 0 18 8 18 18v54z" fill="#8d4a2a" />
+            <path d="M62 284c0-10 6-18 18-18h160c12 0 18 8 18 18z" fill="#a55b35" />
+            <path d="M66 300h188M70 322h180" stroke="#6b3419" stroke-width="2" opacity=".5" />
+            <path d="M118 338v-26a42 42 0 0 1 84 0v26z" fill="#1b0805" />
+            <g clip-path="url(#fire)">
+              <g class="fl" style="transform-origin:160px 338px">
+                <g class="in" style="transform-origin:160px 338px">
+                  <path d="M130 338c-6-20 6-26 4-44 12 8 14 22 10 44z" fill="url(#fl)" />
+                  <path d="M148 338c-8-26 8-34 12-52 14 14 16 32 8 52z" fill="url(#fl)" />
+                  <path d="M172 338c-4-20 4-26 6-40 10 8 12 24 8 40z" fill="url(#fl)" />
+                  <path d="M155 338c-3-12 3-16 5-26 7 8 7 16 3 26z" fill="#fff2a0" opacity=".9" />
+                </g>
+              </g>
+            </g>
+            <path d="M118 338v-26a42 42 0 0 1 84 0v26" fill="none" stroke="#5a2a12" stroke-width="5" />
+            <!-- steam -->
+            <path class="steam" style="--b:0s" d="M128 80c-8-10 8-16 0-26" />
+            <path class="steam" style="--b:.8s" d="M160 74c-8-10 8-16 0-28" />
+            <path class="steam" style="--b:1.5s" d="M192 80c-8-10 8-16 0-26" />
+            <!-- pot -->
+            <g id="pot">
+              <path d="M104 108h92c6 16 46 28 52 78 4 40-14 70-42 80H94c-28-10-46-40-42-80 6-50 46-62 52-78z"
+                fill="url(#brass)" stroke="#7a4a08" stroke-width="2" />
+              <path d="M98 100h104c4 0 6 3 6 6s-2 6-6 6H98c-4 0-6-3-6-6s2-6 6-6z" fill="url(#brassv)" stroke="#7a4a08"
+                stroke-width="2" />
+              <path d="M62 178c30 14 166 14 196 0" fill="none" stroke="#f5b014" stroke-width="9" opacity=".85"
+                stroke-linecap="round" />
+              <circle cx="106" cy="190" r="4.5" fill="#b3162a" />
+              <circle cx="160" cy="194" r="4.5" fill="#b3162a" />
+              <circle cx="214" cy="190" r="4.5" fill="#b3162a" />
+              <path d="M120 150c8-10 18-10 24 0-8 8-18 8-24 0zM176 150c6-10 16-10 24 0-6 8-16 8-24 0z" fill="#3f8a45"
+                opacity=".9" />
+              <path d="M80 214c-6 6-4 24 4 34" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35"
+                fill="none" />
+              <!-- foam & overflow (in front of pot) -->
+              <g id="foam">
+                <circle cx="124" cy="100" r="19" fill="#fffdf6" />
+                <circle cx="150" cy="90" r="24" fill="#fffdf6" />
+                <circle cx="178" cy="92" r="22" fill="#fffdf6" />
+                <circle cx="198" cy="102" r="17" fill="#fffdf6" />
+                <circle cx="106" cy="104" r="14" fill="#fffdf6" />
+                <circle class="bub" style="--b:0s" cx="140" cy="84" r="5" fill="#fff" stroke="#e8dcc0" />
+                <circle class="bub" style="--b:.3s" cx="168" cy="78" r="6" fill="#fff" stroke="#e8dcc0" />
+                <circle class="bub" style="--b:.6s" cx="188" cy="92" r="4" fill="#fff" stroke="#e8dcc0" />
+                <circle class="bub" style="--b:.2s" cx="120" cy="92" r="4" fill="#fff" stroke="#e8dcc0" />
+              </g>
+              <path class="run" pathLength="1" d="M104 110C90 124 66 140 60 178" />
+              <path class="run" pathLength="1" d="M196 110C210 124 234 140 240 178" />
+              <path class="run" pathLength="1" d="M134 112C130 140 132 170 128 200" />
+              <path class="run" pathLength="1" d="M178 112C184 134 180 160 184 184" />
+            </g>
+          </svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CAST ================= -->
+  <section class="sec alt" id="cast">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="cap-l">Presented by</span>
+        <h2>அன்புடன் அழைப்பவர்கள்</h2>
+        <p>Inviting you with love</p>
+        <div class="film-rule"></div>
+      </div>
+      <div class="bill">
+        <div class="lead reveal">
+          <div class="lamp-ic" data-lamp></div>
+          <p class="role">PRESENTED BY</p>
+          <p class="nm">S. மாரியப்பன் &amp; M. முத்துலட்சுமி</p>
+          <p class="en">S. MARIAPPAN &amp; M. MUTHULAKSHMI</p>
+        </div>
+        <div class="co reveal">
+          <div>
+            <p class="role">WITH LOVE</p>
+            <p class="nm">S.M. சரத்குமார் &amp; S. சுபாஷினி</p>
+            <p class="en">S.M. SARATH KUMAR &amp; S. SUBHASHINI</p>
+          </div>
+          <div>
+            <p class="role">WITH LOVE</p>
+            <p class="nm">S.M. சந்தோஷ் குமார்</p>
+            <p class="en">S.M. SANTHOSH KUMAR</p>
+          </div>
+        </div>
+        <div class="special reveal">
+          <p class="role" style="font-family:var(--cine);letter-spacing:.34em;color:var(--gold);font-size:17px">SPECIAL
+            APPEARANCE</p>
+          <p>எங்கள் அன்புக்குரிய உறவினர்களும் நண்பர்களும், நீங்கள்தான்.<small>Our dear relatives and close friends. That
+              means you.</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STILLS ================= -->
+  <section class="sec" id="photos" style="padding-bottom:70px">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="cap-l">Stills</span>
+        <h2>நம் புதிய இல்லம்</h2>
+        <p>Photos of our new home</p>
+        <div class="film-rule"></div>
+      </div>
+    </div>
+    <div class="strip" id="strip" tabindex="0" aria-label="Photo film strip"></div>
+    <p class="stillnote" id="stillNote">புகைப்படங்கள் விரைவில் சேர்க்கப்படும் · Stills coming soon</p>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <section class="closing" id="closing">
+    <div class="thoranam" data-thoranam></div>
+    <div class="wrap">
+      <h2 class="reveal">வருக! வருக!</h2>
+      <p class="l2 reveal">உங்கள் வருகையே எங்கள் மகிழ்ச்சி</p>
+      <p class="l3 reveal">SEE YOU AT THE CELEBRATION</p>
+      <div class="btns reveal">
+        <a class="btn solid" id="wa" href="#" target="_blank" rel="noopener"><span>பகிர் <small>SHARE ON
+              WHATSAPP</small></span></a>
+        <button class="btn" id="copyMsg"><span>அழைப்பு நகல் <small>COPY INVITATION</small></span></button>
+        <button class="btn" id="shower"><span>மலர் மழை <small>FLOWER SHOWER</small></span></button>
+      </div>
+      <p class="foot">S. Mariappan &amp; M. Muthulakshmi Family · House Warming · 29.11.2026</p>
+    </div>
+  </section>
+
+  <a class="fab" href="https://maps.app.goo.gl/CaZRW9f31M9kSxqdA" target="_blank" rel="noopener"><svg
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>வழி · Directions</a>
+  <div class="lb" id="lb" role="dialog" aria-label="Photo viewer"><button class="x" id="lbx"
+      aria-label="Close">&times;</button><button class="pv" id="lbp" aria-label="Previous">&#8249;</button><button
+      class="nx" id="lbn" aria-label="Next">&#8250;</button><img id="lbi" alt="">
+    <p id="lbc"></p>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    /* PHOTOS: add house photos here. Each entry: { src: "image url or data URI", caption: "text" } */
+    const PHOTOS = [];
+
+    const $ = s => document.querySelector(s);
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ADDR_EN = 'Old No. 106, New No. 98/1, Sri Rangammal Street, Old Washermanpet, Chennai 600021';
+    const MAP = 'https://maps.app.goo.gl/CaZRW9f31M9kSxqdA';
+    const START = Date.parse('2026-11-29T06:00:00+05:30');
+
+    /* ---------- thoranam (mango leaves + marigolds) ---------- */
+    function thoranam(el) {
+      let s = '<svg viewBox="0 0 1200 96" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><path d="M0 8H1200" stroke="#8a5a12" stroke-width="3"/>';
+      for (let x = 12, j = 0; x < 1200; x += 30, j++) {
+        const L = j % 2 ? 46 : 66, c = j % 3 ? '#2f6b3a' : '#3f8a45', d = (-(j * 0.41) % 3.4).toFixed(2);
+        s += `<g transform="translate(${x} 8)"><g class="sw" style="--d:${d}s"><path d="M0 0C${L * .2} ${L * .25} ${L * .22} ${L * .68} 0 ${L}C${-L * .22} ${L * .68} ${-L * .2} ${L * .25} 0 0z" fill="${c}"/><path d="M0 3L0 ${L - 5}" stroke="#c4e6a4" stroke-width="1" opacity=".6"/></g></g>`;
+        const f = j % 2 ? '#f6a609' : '#ffcf3d';
+        s += `<g transform="translate(${x + 15} 8)"><g class="sw" style="--d:${(-(j * 0.29) % 3.4).toFixed(2)}s"><path d="M0 0v12" stroke="#8a5a12"/><circle cy="19" r="8" fill="${f}"/><circle cy="19" r="4" fill="#e26a00" opacity=".8"/></g></g>`;
+      }
+      el.innerHTML = s + '</svg>';
+    }
+    document.querySelectorAll('[data-thoranam]').forEach(thoranam);
+
+    /* ---------- lamp (kuthuvilakku) ---------- */
+    const lampSVG = () => `<svg viewBox="0 0 60 150" width="100%" aria-hidden="true">
+ <circle class="glow" cx="30" cy="30" r="26" fill="url(#halo)"/>
+ <path d="M14 134h32l6 10H8z" fill="url(#brassv)"/><path d="M20 126h20l-3 8H23z" fill="url(#brass)"/>
+ <rect x="27" y="60" width="6" height="68" fill="url(#brass)"/>
+ <ellipse cx="30" cy="80" rx="8" ry="3.5" fill="url(#brass)"/><ellipse cx="30" cy="100" rx="9" ry="3.5" fill="url(#brass)"/><ellipse cx="30" cy="118" rx="7" ry="3" fill="url(#brass)"/>
+ <path d="M8 44c6 0 8 14 22 14s16-14 22-14c0 12-10 20-22 20S8 56 8 44z" fill="url(#brass)"/>
+ <path class="flame" d="M30 8c9 12 8 24 0 31-8-7-9-19 0-31z" fill="url(#fl)"/>
+ <path class="flame2" d="M30 21c4 6 4 11 0 14-4-3-4-8 0-14z" fill="#fff6c8"/></svg>`;
+    document.querySelectorAll('[data-lamp]').forEach(e => e.innerHTML = lampSVG());
+
+    /* ---------- kolam ---------- */
+    function kolamSVG() {
+      const C = 180, f = n => n.toFixed(1), P = (r, a) => [C + r * Math.cos(a), C + r * Math.sin(a)];
+      let out = '', i = 0, j = 0;
+      const path = (d) => { out += `<path pathLength="1" style="--i:${i++}" d="${d}"/>`; };
+      const dot = (x, y, r, cls = '') => { out += `<circle class="${cls}" style="--j:${j++}" cx="${f(x)}" cy="${f(y)}" r="${r}"/>`; };
+      for (let k = 0; k < 8; k++) {
+        const a = k * Math.PI / 4, p = (r, d) => P(r, a + d).map(f).join(' ');
+        path(`M${p(16, 0)} C${p(50, -.62)} ${p(78, -.36)} ${p(92, 0)} C${p(78, .36)} ${p(50, .62)} ${p(16, 0)}z`);
+      }
+      for (let k = 0; k < 16; k++) {
+        const a = k * Math.PI / 8, p = (r, d) => P(r, a + d).map(f).join(' ');
+        path(`M${p(70, 0)} C${p(92, -.2)} ${p(114, -.15)} ${p(130, 0)} C${p(114, .15)} ${p(92, .2)} ${p(70, 0)}z`);
+      }
+      let d = ''; for (let k = 0; k < 24; k++) {
+        const p0 = P(146, k * Math.PI / 12), p1 = P(146, (k + 1) * Math.PI / 12);
+        d += (k ? '' : `M${f(p0[0])} ${f(p0[1])}`) + `A19.6 19.6 0 0 1 ${f(p1[0])} ${f(p1[1])}`;
+      }
+      path(d + 'z');
+      for (let k = 0; k < 24; k++) { const q = P(174, (k + .5) * Math.PI / 12); dot(q[0], q[1], 3); }
+      for (let k = 0; k < 8; k++) { const q = P(48, (k + .5) * Math.PI / 4); dot(q[0], q[1], 2.6, 'g'); }
+      dot(C, C, 7, 'g');
+      return `<svg class="kolam" viewBox="0 0 360 360"><g class="spin">${out}</g></svg>`;
+    }
+    $('#kolamHost').innerHTML = kolamSVG();
+
+    /* ---------- flower shower ---------- */
+    const cv = $('#petals'), cx = cv.getContext('2d'); let W, H, dpr, P = [], raf = 0;
+    function size() { dpr = Math.min(2, devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+    size(); addEventListener('resize', size);
+    const COLS = ['#f6a609', '#ffcf3d', '#fff8e8', '#f9a8c9', '#e2352b', '#ff8a1f'];
+    function mk(x, y, vx, vy, g) { return { x, y, vx, vy, g, r: Math.random() * 6.28, vr: (Math.random() - .5) * .12, s: 5 + Math.random() * 7, c: COLS[(Math.random() * COLS.length) | 0], sw: Math.random() * 6.28 }; }
+    function shower(n = 110) { if (RM) return; for (let i = 0; i < n; i++) P.push(mk(Math.random() * W, -20 - Math.random() * H * .6, (Math.random() - .5) * 1.2, 1.2 + Math.random() * 2.2, 0)); go(); }
+    function burst(x, y, n = 70) { if (RM) return; for (let i = 0; i < n; i++) { const a = -Math.PI / 2 + (Math.random() - .5) * 2.4, v = 4 + Math.random() * 7; P.push(mk(x, y, Math.cos(a) * v, Math.sin(a) * v, .12)); } go(); }
+    function go() { if (!raf) raf = requestAnimationFrame(step); }
+    function step() {
+      raf = 0; cx.clearRect(0, 0, W, H);
+      for (const p of P) {
+        p.sw += .05; p.x += p.vx + Math.sin(p.sw) * .7; p.y += p.vy; p.vy = Math.min(p.vy + p.g, 4); if (p.g && p.vy > 2.5) p.g = 0; p.r += p.vr;
+        cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r); cx.scale(1, .25 + Math.abs(Math.cos(p.sw)) * .75); cx.fillStyle = p.c; cx.beginPath(); cx.ellipse(0, 0, p.s, p.s * .55, 0, 0, 6.283); cx.fill(); cx.restore();
+      }
+      P = P.filter(p => p.y < H + 30); if (P.length) raf = requestAnimationFrame(step);
+    }
+
+    /* ---------- temple bell (synth chime for small effects) ---------- */
+    let ac, soundOn = true;
+    function chime() {
+      if (!soundOn) return; try {
+        ac = ac || new (window.AudioContext || window.webkitAudioContext)(); const t = ac.currentTime;
+        [[523.25, 1], [1046.5, .55], [1568, .3], [2093, .15]].forEach(([fr, g]) => {
+          const o = ac.createOscillator(), n = ac.createGain(); o.type = 'sine'; o.frequency.value = fr * (1 + Math.random() * .003);
+          n.gain.setValueAtTime(0, t); n.gain.linearRampToValueAtTime(.1 * g, t + .012); n.gain.exponentialRampToValueAtTime(.0001, t + 2.4); o.connect(n).connect(ac.destination); o.start(t); o.stop(t + 2.5);
+        });
+      } catch (e) { }
+    }
+
+    /* ---------- toast + copy ---------- */
+    let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 2200); }
+    function copy(text, okMsg) {
+      const done = () => toast(okMsg);
+      const fail = () => { const fb = $('#fb'); fb.hidden = false; fb.value = text; fb.focus(); fb.select(); toast('Press and hold to copy the text'); };
+      try { navigator.clipboard.writeText(text).then(done, fail); } catch (e) { fail(); }
+    }
+    const MSG = `புதுமனை புகுவிழா அழைப்பிதழ்\nS. Mariappan & M. Muthulakshmi Family House Warming Function\n\nDate: Sunday, 29 November 2026\nTime: 6:00 AM onwards\nVenue: ${ADDR_EN}\nMap: ${MAP}\n\nYour presence is our blessing.`;
+    $('#copyAddr').onclick = () => copy(ADDR_EN, 'Address copied · முகவரி நகலெடுக்கப்பட்டது');
+    $('#copyMsg').onclick = () => copy(MSG, 'Invitation copied · நகலெடுக்கப்பட்டது');
+    $('#shower').onclick = e => { chime(); const r = e.currentTarget.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 80); shower(80); };
+    $('#wa').href = 'https://wa.me/?text=' + encodeURIComponent(MSG + '\n\n' + (location.href.split('#')[0]));
+    $('#calLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent('Mariappan Family House Warming (புதுமனை புகுவிழா)') + '&dates=20261129T003000Z/20261129T063000Z&location=' + encodeURIComponent(ADDR_EN) + '&details=' + encodeURIComponent('Map: ' + MAP);
+
+    /* ---------- countdown ---------- */
+    const last = {};
+    function setN(id, v) { const el = $('#' + id), s = String(v); if (last[id] !== s) { el.textContent = s; if (last[id] !== undefined && !RM) { el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick'); } last[id] = s; } }
+    function cdown() {
+      const ms = START - Date.now();
+      if (ms <= 0) { $('#tiles').hidden = true; $('.count .cap').hidden = true; const m = $('#cmsg'); m.hidden = false; m.textContent = ms > -12 * 36e5 ? 'இன்று விழா நாள்! வருக வருக!' : 'விழா இனிதே நடைபெற்றது. நன்றி!'; return; }
+      const s = Math.floor(ms / 1000); setN('cd', Math.floor(s / 86400)); setN('ch', Math.floor(s % 86400 / 3600)); setN('cm', Math.floor(s % 3600 / 60)); setN('cs', s % 60);
+    }
+    cdown(); setInterval(cdown, 1000);
+
+    /* ---------- milk ritual ---------- */
+    const milk = $('#milk'); let mt = [];
+    const TXT = { idle: ['அடுப்பை மூட்டுங்கள்', 'Light the stove'], heating: ['பால் சூடாகிறது…', 'The milk is warming'], boiling: ['பொங்கப் போகிறது…', 'Almost there'], over: ['பொங்கிவிட்டது! செல்வம் பொங்கட்டும்!', 'It has overflowed. May prosperity overflow too.'] };
+    function setState(s) { milk.dataset.state = s; $('#status').innerHTML = `${TXT[s][0]}<small>${TXT[s][1]}</small>`; }
+    $('#boilBtn').onclick = () => {
+      mt.forEach(clearTimeout); mt = []; setState('idle'); void milk.getBoundingClientRect();
+      $('#boilBtn').disabled = true;
+      setTimeout(() => setState('heating'), 60);
+      mt.push(setTimeout(() => setState('boiling'), 1600));
+      mt.push(setTimeout(() => { setState('over'); chime(); const r = milk.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height * .3, 70); }, 3800));
+      mt.push(setTimeout(() => { const b = $('#boilBtn'); b.disabled = false; $('#boilTa').textContent = 'மீண்டும்'; $('#boilEn').textContent = 'Boil again'; }, 5600));
+    };
+
+    /* ---------- music: your own mp3 (keep audio_mp3.mp3 in the same folder as this HTML file) ---------- */
+    const bgm = new Audio('audio_mp3.mp3');
+    bgm.loop = true;
+    bgm.preload = 'auto';
+    bgm.volume = 0.8;
+    let music = false;
+
+    function startMusic() {
+      music = true;
+      if (soundOn) bgm.play().catch(() => { });
+    }
+    function setMute() {
+      if (soundOn) bgm.play().catch(() => { }); else bgm.pause();
+      $('#snd').classList.toggle('off', !soundOn);
+      $('#snd').setAttribute('aria-pressed', soundOn);
+      $('#snd').setAttribute('aria-label', soundOn ? 'Mute music' : 'Play music');
+    }
+    $('#snd').onclick = () => {
+      if (!music) { soundOn = true; startMusic(); } else soundOn = !soundOn;
+      setMute();
+    };
+    document.addEventListener('visibilitychange', () => {
+      if (!music) return;
+      if (document.hidden) bgm.pause(); else if (soundOn) bgm.play().catch(() => { });
+    });
+
+    /* ---------- envelope ---------- */
+    let opened = false;
+    function leaveIntro(delay) {
+      setTimeout(() => { $('#intro').classList.add('leave'); document.body.classList.add('go'); const k = $('.kolam'); if (k) k.classList.add('go'); }, delay);
+      setTimeout(() => document.documentElement.classList.remove('locked'), delay + 400);
+      setTimeout(() => $('#intro').classList.add('gone'), delay + 1300);
+    }
+    function openEnv() {
+      if (opened) return; opened = true; startMusic(); chime();
+      $('#env').classList.add('open'); $('#inTap').style.opacity = 0;
+      setTimeout(() => shower(70), 1000); leaveIntro(3300);
+    }
+    $('#env').onclick = openEnv;
+    $('#skipEnv').onclick = () => { if (opened) return; opened = true; startMusic(); leaveIntro(0); };
+    if (location.hash === '#open') { opened = true; $('#intro').classList.add('gone'); document.documentElement.classList.remove('locked'); document.body.classList.add('go'); const k = $('.kolam'); if (k) k.classList.add('go'); }
+
+    /* ---------- poster tilt ---------- */
+    const pw = $('#pw'), po = $('#poster');
+    pw.addEventListener('pointermove', e => {
+      const r = pw.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      po.style.setProperty('--rx', (-y * 14).toFixed(1) + 'deg'); po.style.setProperty('--ry', (x * 16).toFixed(1) + 'deg'); po.style.setProperty('--gx', ((x + .5) * 100).toFixed(0) + '%'); po.style.setProperty('--gy', ((y + .5) * 100).toFixed(0) + '%');
+    });
+    pw.addEventListener('pointerleave', () => { po.style.setProperty('--rx', '0deg'); po.style.setProperty('--ry', '0deg'); });
+
+    /* ---------- ticket ---------- */
+    function hash(s) { let h = 7; for (const c of s) h = (h * 31 + c.codePointAt(0)) >>> 0; return h; }
+    function drawBar(seed) { let h = '', x = seed || 12345; for (let i = 0; i < 46; i++) { x = (x * 1103515245 + 12345) >>> 0; const w = 1 + ((x >>> 16) % 3); h += `<i style="width:${w}px;margin-right:${1 + ((x >>> 8) % 3)}px"></i>`; } $('#bar').innerHTML = h; }
+    let stampT;
+    $('#guest').addEventListener('input', e => {
+      const v = e.target.value.trim(); $('#tGuest').textContent = v ? v + ' & FAMILY' : 'YOU & FAMILY';
+      const n = v ? hash(v) : 1; $('#tNo').textContent = 'HW-2911-' + String(n % 900 + 100); drawBar(n);
+      clearTimeout(stampT); stampT = setTimeout(() => { const s = $('#stamp'); s.classList.remove('hit'); void s.offsetWidth; s.classList.add('hit'); chime(); }, 500);
+    });
+    drawBar(1);
+
+    /* ---------- stills ---------- */
+    const camera = '<svg viewBox="0 0 24 24" fill="none" stroke="#e8b23a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.6"/></svg>';
+    let cur = 0;
+    function renderGallery() {
+      const g = $('#strip'); g.innerHTML = '';
+      if (!PHOTOS.length) { for (let i = 0; i < 6; i++) g.insertAdjacentHTML('beforeend', `<div class="fr"><div class="pic soon">${camera}<span style="font-size:15px">புகைப்படம் விரைவில்</span><span style="font-family:var(--cine);letter-spacing:.2em;font-size:14px;color:#e8b23a">COMING SOON</span></div></div>`); $('#stillNote').hidden = false; return; }
+      $('#stillNote').hidden = true;
+      PHOTOS.forEach((p, i) => {
+        const d = document.createElement('div'); d.className = 'fr'; const cap = (p.caption || '').replace(/</g, '&lt;');
+        d.innerHTML = `<button class="pic" aria-label="${cap || ('Photo ' + (i + 1))}"><img loading="lazy" alt="${cap.replace(/"/g, '&quot;')}" src="${p.src}">${cap ? `<span class="cp">${cap}</span>` : ''}</button><span class="sn">SCENE ${String(i + 1).padStart(2, '0')}</span>`; d.querySelector('button').onclick = () => lb(i); g.appendChild(d);
+      });
+    }
+    function lb(i) { cur = (i + PHOTOS.length) % PHOTOS.length; const p = PHOTOS[cur]; $('#lbi').src = p.src; $('#lbi').alt = p.caption || ''; $('#lbc').textContent = p.caption || ''; $('#lb').classList.add('on'); }
+    $('#lbx').onclick = () => $('#lb').classList.remove('on'); $('#lbp').onclick = () => lb(cur - 1); $('#lbn').onclick = () => lb(cur + 1);
+    $('#lb').onclick = e => { if (e.target.id === 'lb') $('#lb').classList.remove('on'); };
+    addEventListener('keydown', e => { if (!$('#lb').classList.contains('on')) return; if (e.key === 'Escape') $('#lb').classList.remove('on'); if (e.key === 'ArrowLeft') lb(cur - 1); if (e.key === 'ArrowRight') lb(cur + 1); });
+    renderGallery();
+
+    /* ---------- scroll reveal ---------- */
+    if ('IntersectionObserver' in window && !RM) {
+      const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+      document.querySelectorAll('.reveal').forEach(el => { el.classList.add('pre'); io.observe(el); });
+    }
+  </script>
+
+</body>
+
+</html>
